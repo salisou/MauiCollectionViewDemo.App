@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiCollectionViewDemo.MVVM.Views.EmptyView"
+             Title="EmptyView">
+    <ContentPage.Resources>
+        <ContentView x:Key="NoResultsView">
+            <Grid>
+                <VerticalStackLayout VerticalOptions="Center" >
+                    <Image HeightRequest="150"
+                           VerticalOptions="Center"
+                           Source="no_results.jpg"/>
+                    <Label Text="No Result!"
+                           FontSize="Large"
+                           FontAttributes="Bold"
+                           HorizontalTextAlignment="Center"/>
+                </VerticalStackLayout>
+            </Grid>
+        </ContentView>
+        <ContentView x:Key="ConnectivityIssue">
+            <Grid>
+                <VerticalStackLayout VerticalOptions="Center" >
+                    <Image HeightRequest="150"
+                           VerticalOptions="Center"
+                           Source="no_connection.jpg"/>
+                    <Label Text="Check your internet connection!"
+                           FontSize="Large"
+                           FontAttributes="Bold"
+                           HorizontalTextAlignment="Center"/>
+                </VerticalStackLayout>
+            </Grid>
+        </ContentView>
+    </ContentPage.Resources>
+
+    <Grid RowDefinitions=".2*, .8*">
+        <HorizontalStackLayout>
+            <Label Text="Toggle EmptyViews"/>
+            <Switch Toggled="Switch_Toggled"/>
+        </HorizontalStackLayout>
+        <CollectionView x:Name="collectionView" Grid.Row="1">
+            <CollectionView.ItemsSource>
+                <x:Array Type="{x:Type x:String}"/>
+                <!--<x:String>Row Semple</x:String>
+                    <x:String>Row Semple</x:String>
+                    <x:String>Row Semple</x:String>
+                    <x:String>Row Semple</x:String>
+                    <x:String>Row Semple</x:String>
+                    <x:String>Row Semple</x:String>
+                    <x:String>Row Semple</x:String>
+                    <x:String>Row Semple</x:String>
+                    <x:String>Row Semple</x:String>-->
+
+            </CollectionView.ItemsSource>
+            <CollectionView.EmptyView/>
+
+        </CollectionView>
+    </Grid>
+</ContentPage>

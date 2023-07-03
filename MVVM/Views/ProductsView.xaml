@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiCollectionViewDemo.MVVM.Views.ProductsView"
+             Title="ProductsView">
+
+    <Grid RowDefinitions=".1*, .9*">
+        <Button Text="Manual Scolling" Clicked="Button_Clicked"/>
+        <!-- How to obtain values from the control when the scrolling-->
+        <CollectionView IsGrouped="True"
+                        x:Name="collectionView"
+                        Grid.Row="1"
+                        ItemsSource="{Binding Products}"
+                        Scrolled="CollectionView_Scrolled"
+                        ItemsUpdatingScrollMode="KeepLastItemInView">
+        <CollectionView.ItemsLayout>
+            <LinearItemsLayout ItemSpacing="10"
+                               Orientation="Vertical" 
+                               SnapPointsAlignment="Start"
+                               SnapPointsType="Mandatory"/>
+        </CollectionView.ItemsLayout>
+        
+        <!--#region List Product -->
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <Frame BackgroundColor="White" CornerRadius="15">
+                    <VerticalStackLayout>
+                        <!--<Image Source="{Binding Image}"/>-->
+                        <Label Text="{Binding Id}"/>
+                        <Label Text="{Binding Name}"/>
+                        <Label Text="{Binding Price}"/>
+                    </VerticalStackLayout>
+                </Frame>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+        <!--#endregion-->
+
+        <!--#region Header Group Products -->
+            <CollectionView.GroupHeaderTemplate>
+                <DataTemplate>
+                    <Label Text="{Binding Name}"
+                       FontSize="Large"
+                       TextColor="Black"
+                       FontAttributes="Bold"
+                       BackgroundColor="LightGray"/>
+
+            </DataTemplate>
+            </CollectionView.GroupHeaderTemplate>
+        <!--#endregion-->
+
+        <!--#region Footer Group Products get total group  count-->
+        <CollectionView.GroupFooterTemplate>
+            <DataTemplate>
+                <Label Margin="0,0,0,10"
+                       TextColor="MidnightBlue"
+                       Text="{Binding Count, StringFormat='Totla Products: {0:D}'}"/>
+            </DataTemplate>
+        </CollectionView.GroupFooterTemplate>
+        <!--#endregion-->
+    </CollectionView>
+    </Grid>
+</ContentPage>

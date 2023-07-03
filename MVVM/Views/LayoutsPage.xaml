@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiCollectionViewDemo.MVVM.Views.LayoutsPage"
+             Title="LayoutsPage">
+
+    <Grid RowDefinitions=".1*,.9*">
+        <Button Text="Clear Selections" Command="{Binding ClearCommand}"/>
+        <!--<CollectionView ItemsSource="{Binding Products}"
+                        SelectionMode="Single"
+                        SelectionChangedCommand="{Binding ProductChangedCommand}"
+                        SelectedItem="{Binding SelectedProduct}"
+                        Grid.Row="1">-->
+            <CollectionView ItemsSource="{Binding Products}"
+                        SelectionMode="Multiple"
+                        SelectedItems="{Binding SelectedProducts}"
+                        SelectionChangedCommand="{Binding ProducstChangedCommand}"
+                            Grid.Row="1">
+            <CollectionView.Header>
+                <Frame BackgroundColor="{StaticResource Primary}" Margin="8">
+                    <Label Text="Products"
+                           TextColor="White"
+                           FontAttributes="Bold"/>
+                </Frame>
+            </CollectionView.Header>
+            <CollectionView.Footer>
+                <HorizontalStackLayout>
+                    <Label FontSize="Title">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Powored By:" TextColor="{StaticResource Tertiary}"/>
+                                <Span Text=".Net Maui" TextColor="{StaticResource Primary}"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </HorizontalStackLayout>
+            </CollectionView.Footer>
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical" 
+                                   ItemSpacing="50"/>
+                <!--<GridItemsLayout Orientation="Horizontal" Span="2" />-->
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame Margin="15"
+                           WidthRequest="200"
+                           HeightRequest="300">
+                        <VerticalStackLayout>
+                            <Image Source="{Binding Image}"/>
+                            <Label Text="{Binding Name}" 
+                                   HorizontalTextAlignment="Center"/>
+                        </VerticalStackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>
